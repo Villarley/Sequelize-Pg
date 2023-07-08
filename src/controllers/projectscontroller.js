@@ -36,20 +36,20 @@ export const createProject = async (req, res) => {
     }catch(err){
         return res.status(500).json({message: err.message});
     }
-  //In this const we store the body in local variables
+    //In this const we store the body in local variables
 };
 export const updateProject = async(req, res) =>{
     try {
         const { id } = req.params;
         const {name, priority, description } = req.body;
         const project = await Project.findByPk(id)
-         console.log(project);
-         project.name = name ?? project.name;
-         project.priority = priority ?? project.priority;
-         project.description = description ?? project.description;         
-
-         await  project.save();
-         res.json(project);
+        console.log(project);
+        project.name = name ?? project.name;
+        project.priority = priority ?? project.priority;
+        project.description = description ?? project.description;         
+        
+        await  project.save();
+        res.json(project);
     } catch (err) {
         return res.status(500).json({message: err.message});
     }
@@ -69,3 +69,10 @@ export const deleteProject = async(req, res) =>{
         return res.status(500).json({message: err.message});
     }
 };
+export const getProjectTasks = async(req, res) =>{
+    const { id } = req.params;
+    const tasks = await Task.findAll({
+        where:{ projectId: id },
+    });
+    res.json(tasks);
+}
