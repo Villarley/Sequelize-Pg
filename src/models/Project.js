@@ -2,7 +2,7 @@ import { DataTypes }  from "sequelize";
 import {sequelize} from "../database/database.js";
 import { Task } from "./Task.js";
 
-const Project = sequelize.define('projects', {
+export const Project = sequelize.define('projects', {
     id: {
         type:DataTypes.INTEGER,
         primaryKey: true,

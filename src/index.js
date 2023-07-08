@@ -8,7 +8,7 @@ let port = 3060
 async function main(){
     try{
         await sequelize.authenticate();
-        await sequelize.sync({force: true});
+        await sequelize.sync();
         console.log('Connection has been established succesfully');
         app.listen(3060);
         console.log('Server is running on '+ 3060);
